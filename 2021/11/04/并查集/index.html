@@ -18,13 +18,13 @@
   <meta name="description" content="论文题目：并查集算法原理与实现 1 引言 过年了，你从大学回到家，客厅里早已坐满了人。由于你的家族人员过于庞大，要判断你和一个坐在客厅里的人是否是亲戚，确实还很不容易，所以为了拿到红包你要做足功课。通过调查，你知道了一系列的亲戚关系，比如 A 和 B 是亲戚， C 和 D 是亲戚等等……我们约定如果 A 和 B 是亲戚， B 和 C 是亲戚， 那么 C 和 D 是亲戚。现在你想知道客厅里的有谁与你">
 <meta property="og:type" content="article">
 <meta property="og:title" content="test1">
-<meta property="og:url" content="http://example.com/2021/11/04/test1/index.html">
+<meta property="og:url" content="http://example.com/2021/11/04/%E5%B9%B6%E6%9F%A5%E9%9B%86/index.html">
 <meta property="og:site_name" content="aMenoToriFune-Shrine">
 <meta property="og:description" content="论文题目：并查集算法原理与实现 1 引言 过年了，你从大学回到家，客厅里早已坐满了人。由于你的家族人员过于庞大，要判断你和一个坐在客厅里的人是否是亲戚，确实还很不容易，所以为了拿到红包你要做足功课。通过调查，你知道了一系列的亲戚关系，比如 A 和 B 是亲戚， C 和 D 是亲戚等等……我们约定如果 A 和 B 是亲戚， B 和 C 是亲戚， 那么 C 和 D 是亲戚。现在你想知道客厅里的有谁与你">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="http://example.com/null">
 <meta property="article:published_time" content="2021-11-04T09:17:36.000Z">
-<meta property="article:modified_time" content="2021-11-15T03:02:58.659Z">
+<meta property="article:modified_time" content="2021-11-15T03:19:11.309Z">
 <meta property="article:author" content="aMenoTori">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="http://example.com/null">
@@ -151,7 +151,7 @@
                     <i class="fa fa-edit"></i> 
                     
                     
-                        ~4.62K
+                        ~5.09K
                     
                     字
                 </li>
@@ -160,7 +160,7 @@
         </header>
         <div class="kratos-post-content">
             <div id="expire-alert" class="alert alert-warning hidden" role="alert">
-                本文最后编辑于 <time datetime="1636945378659"></time> 前，其中的内容可能需要更新。
+                本文最后编辑于 <time datetime="1636946351309"></time> 前，其中的内容可能需要更新。
             </div>
             
             <hr />
@@ -175,53 +175,20 @@
 <p>我们使用树来表示并查集，我们的操作基于一个int set[]数组来实现，其中，set[i]表示i节点的父节点，也就是说set[i]和i之间是具有相互连通的关系，当我们需要了解两个节点之间是否就有连通性的时候，我们只需要判断两个节点的父节点是否相同即可。</p>
 <p>2.2 并查集的初始化</p>
 <p>并查集的重要思想在于，用集合中的一个元素代表集合。一开始，每个集合只有一个元素，它们的代表自然就是自己。</p>
-<p>‘’’</p>
-<p>for(int i=1;i&lt;=n;i++)</p>
-<p>{</p>
-<p>set[i] = i;</p>
-<p>}</p>
-<p>‘’’</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=n;i++)</span><br><span class="line"></span><br><span class="line">&#123;</span><br><span class="line"></span><br><span class="line"><span class="built_in">set</span>[i] = i;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
 <p>2.3 并查集查询根节点</p>
 <p>按照我们刚刚的思路，要找到一个元素的代表代表，也就是要找到这棵树的根节点，我们只需要从这个元素开始一直向父亲节点迈进，直到找到一个元素的父亲节点是他本身就可以了，所以我们可以通过迭代实现：</p>
-<p>‘’’</p>
-<p>int Find(int x) </p>
-<p>{</p>
-<p>  int x_r = x;//将父节点初始化为自身</p>
-<p>  while (set[x_r]!=x_r)</p>
-<p>  {</p>
-<p>​    x_r=set[x_r];//递归寻找根节点</p>
-<p>  }</p>
-<p>  return x_r;</p>
-<p>}</p>
-<p>‘’’</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">Find</span><span class="params">(<span class="keyword">int</span> x)</span> </span></span><br><span class="line"><span class="function"></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">int</span> x_r = x;<span class="comment">//将父节点初始化为自身</span></span><br><span class="line"></span><br><span class="line">  <span class="keyword">while</span> (<span class="built_in">set</span>[x_r]!=x_r)</span><br><span class="line"></span><br><span class="line">  &#123;</span><br><span class="line"></span><br><span class="line">​    x_r=<span class="built_in">set</span>[x_r];<span class="comment">//递归寻找根节点</span></span><br><span class="line"></span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> x_r;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
 <p>2.3 并查集合并集合树</p>
 <p>  合并的思想也很简单，对于两个点x和 y ，先找到 x 和 y 所在并查集的根节点 x_r 和 y_r，然后进行如下判断。如果 x_r == y_r，就说明他们本身就在一个并查集，也就是同一棵树下，所以不需要再合并了；反之则将 x_r 指向 y_r，即把 x_r 的父节点设置为 y_r。代码实现也很简单：</p>
-<p>‘’’</p>
-<p>void Union(int x,int y)</p>
-<p>{</p>
-<p>  int x_r = Find(x);//查询x的根节点</p>
-<p>  int y_r = Find(y);//查询y的根节点</p>
-<p>  if(x_r != y_r)</p>
-<p>  {</p>
-<p>​    set[x_r]=y_r;// 把 x_r 的父节点设置为 y_r</p>
-<p>  }</p>
-<p>  return;</p>
-<p>}</p>
-<p>‘’’</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">Union</span><span class="params">(<span class="keyword">int</span> x,<span class="keyword">int</span> y)</span></span></span><br><span class="line"><span class="function"></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">int</span> x_r = Find(x);<span class="comment">//查询x的根节点</span></span><br><span class="line"></span><br><span class="line">  <span class="keyword">int</span> y_r = Find(y);<span class="comment">//查询y的根节点</span></span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span>(x_r != y_r)</span><br><span class="line"></span><br><span class="line">  &#123;</span><br><span class="line"></span><br><span class="line">​    <span class="built_in">set</span>[x_r]=y_r;<span class="comment">// 把 x_r 的父节点设置为 y_r</span></span><br><span class="line"></span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span>;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
 <p>2.4 并查集压缩路径</p>
 <p>  上面程序代码find方法只是简单地把待查找的元素所在的根返回。路径压缩是指，在find操作进行时，使find查找路径中的顶点(的父亲)都直接指向为根节点。修改后的Find代码如下：</p>
-<p>‘’’</p>
-<p>int Find(int x) </p>
-<p>{</p>
-<p>  int x_r = x;</p>
-<p>  while (set[x_r]!=x_r)</p>
-<p>  {</p>
-<p>​    x_r=set[x_r];</p>
-<p>  }</p>
-<p>  set[x] = x_r;//将元素直接指向根节点</p>
-<p>  return x_r;</p>
-<p>}</p>
-<p> ‘’’</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">Find</span><span class="params">(<span class="keyword">int</span> x)</span> </span></span><br><span class="line"><span class="function"></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">int</span> x_r = x;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">while</span> (<span class="built_in">set</span>[x_r]!=x_r)</span><br><span class="line"></span><br><span class="line">  &#123;</span><br><span class="line"></span><br><span class="line">​    x_r=<span class="built_in">set</span>[x_r];</span><br><span class="line"></span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="built_in">set</span>[x] = x_r;<span class="comment">//将元素直接指向根节点</span></span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> x_r;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
 <p>2.5 算法的正确性、时间和空间复杂性分析</p>
 <p>   当同时使用路径压缩和按秩合并的时候。可以确保每个操作分摊下来的时间是O(α(n))，这是最优的， 这个α(n)是 inverse Ackermann function(逆阿克曼函数),当我们现在宇宙中的任何n值，可以得知α(n)&lt;5，所以并查集运算基本恒定。</p>
 <p>  因为并查集使用int set[]数组实现，因此空间复杂度为O(n)。</p>
@@ -302,71 +269,7 @@
 <p>并查集主要用于解决一些元素分组的问题。它管理一系列不相交的集合，凡是涉及到元素的分组管理问题，都可以考虑使用并查集进行维护。</p>
 <p>5 参考文献</p>
 <p>附录：并查集完整代码</p>
-<p>‘’’</p>
-<p>#include&lt;stdio.h&gt;</p>
-<p>#define Max 2021</p>
-<p>int set[Max];</p>
-<p>int deep[Max];</p>
-<p>int flag[Max];</p>
-<p>int Find(int x) </p>
-<p>{</p>
-<p>  int x_r = x;</p>
-<p>  while (set[x_r]!=x_r)</p>
-<p>  {</p>
-<p>​    x_r=set[x_r];</p>
-<p>  }</p>
-<p>  deep[x]=(deep[set[x]]+deep[x])%2;//路径更新</p>
-<p>  set[x] = x_r;//路径压缩</p>
-<p>  return x_r;</p>
-<p>}</p>
-<p>int Union(int x,int y)</p>
-<p>{</p>
-<p>  int x_r=Find(x);</p>
-<p>  int y_r=Find(y);</p>
-<p>  if(x_r==y_r&amp;&amp;deep[x]==deep[y])</p>
-<p>​    return 0;</p>
-<p>  if(x_r &lt; y_r)</p>
-<p>  {</p>
-<p>​    deep[y_r]=((deep[x]+1)%2+deep[y])%2;//改变父节点深度</p>
-<p>​    set[y_r]=x_r;//大并小</p>
-<p>  }else{ </p>
-<p>​    deep[x_r]=((deep[x]+1)%2+deep[y])%2;</p>
-<p>​    set[x_r]=y_r;</p>
-<p>  }</p>
-<p>  return 1;</p>
-<p>}</p>
-<p>int main()</p>
-<p>{</p>
-<p>  int c;</p>
-<p>  scanf(“%d”,&amp;c);</p>
-<p>  for(int i=1;i&lt;=c;i++)</p>
-<p>  {</p>
-<p>​    int n,m;</p>
-<p>​    scanf(“%d %d”,&amp;n,&amp;m);</p>
-<p>​    for(int j=1;j&lt;=n;j++)</p>
-<p>​    {</p>
-<p>​      set[j] = j;</p>
-<p>​      deep[j] = 0;</p>
-<p>​    }</p>
-<p>​    int x,y;</p>
-<p>​    flag[i] = 1;</p>
-<p>​    while(m–)</p>
-<p>​    {      </p>
-<p>​      scanf(“%d %d”,&amp;x,&amp;y);</p>
-<p>​      if(flag[i]) flag[i]=Union(x,y);</p>
-<p>​    }</p>
-<p>  }</p>
-<p>  for(int i=1;i&lt;=c;i++)</p>
-<p>  {</p>
-<p>​    printf(“testcase %d:”,i);</p>
-<p>​    if(flag[i])</p>
-<p>​      printf(“没有发现同性恋\n”);</p>
-<p>​    else</p>
-<p>​      printf(“发现同性恋\n”);</p>
-<p>  }</p>
-<p>  return 0;</p>
-<p>}</p>
-<p>‘’’</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"></span><br><span class="line">\<span class="meta">#<span class="meta-keyword">define</span> Max 2021</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> <span class="built_in">set</span>[Max];</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> deep[Max];</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> flag[Max];</span><br><span class="line"></span><br><span class="line"> </span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">Find</span><span class="params">(<span class="keyword">int</span> x)</span> </span></span><br><span class="line"><span class="function"></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">int</span> x_r = x;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">while</span> (<span class="built_in">set</span>[x_r]!=x_r)</span><br><span class="line"></span><br><span class="line">  &#123;</span><br><span class="line"></span><br><span class="line">​    x_r=<span class="built_in">set</span>[x_r];</span><br><span class="line"></span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  deep[x]=(deep[<span class="built_in">set</span>[x]]+deep[x])%<span class="number">2</span>;<span class="comment">//路径更新</span></span><br><span class="line"></span><br><span class="line">  <span class="built_in">set</span>[x] = x_r;<span class="comment">//路径压缩</span></span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> x_r;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">Union</span><span class="params">(<span class="keyword">int</span> x,<span class="keyword">int</span> y)</span></span></span><br><span class="line"><span class="function"></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">int</span> x_r=Find(x);</span><br><span class="line"></span><br><span class="line">  <span class="keyword">int</span> y_r=Find(y);</span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span>(x_r==y_r&amp;&amp;deep[x]==deep[y])</span><br><span class="line"></span><br><span class="line">​    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span>(x_r &lt; y_r)</span><br><span class="line"></span><br><span class="line">  &#123;</span><br><span class="line"></span><br><span class="line">​    deep[y_r]=((deep[x]+<span class="number">1</span>)%<span class="number">2</span>+deep[y])%<span class="number">2</span>;<span class="comment">//改变父节点深度</span></span><br><span class="line"></span><br><span class="line">​    <span class="built_in">set</span>[y_r]=x_r;<span class="comment">//大并小</span></span><br><span class="line"></span><br><span class="line">  &#125;<span class="keyword">else</span>&#123; </span><br><span class="line"></span><br><span class="line">​    deep[x_r]=((deep[x]+<span class="number">1</span>)%<span class="number">2</span>+deep[y])%<span class="number">2</span>;</span><br><span class="line"></span><br><span class="line">​    <span class="built_in">set</span>[x_r]=y_r;</span><br><span class="line"></span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">int</span> c;</span><br><span class="line"></span><br><span class="line">  <span class="built_in">scanf</span>(<span class="string">&quot;%d&quot;</span>,&amp;c);</span><br><span class="line"></span><br><span class="line">  <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=c;i++)</span><br><span class="line"></span><br><span class="line">  &#123;</span><br><span class="line"></span><br><span class="line">​    <span class="keyword">int</span> n,m;</span><br><span class="line"></span><br><span class="line">​    <span class="built_in">scanf</span>(<span class="string">&quot;%d %d&quot;</span>,&amp;n,&amp;m);</span><br><span class="line"></span><br><span class="line">​    <span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">1</span>;j&lt;=n;j++)</span><br><span class="line"></span><br><span class="line">​    &#123;</span><br><span class="line"></span><br><span class="line">​      <span class="built_in">set</span>[j] = j;</span><br><span class="line"></span><br><span class="line">​      deep[j] = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">​    &#125;</span><br><span class="line"></span><br><span class="line">​    <span class="keyword">int</span> x,y;</span><br><span class="line"></span><br><span class="line">​    flag[i] = <span class="number">1</span>;</span><br><span class="line"></span><br><span class="line">​    <span class="keyword">while</span>(m--)</span><br><span class="line"></span><br><span class="line">​    &#123;      </span><br><span class="line"></span><br><span class="line">​      <span class="built_in">scanf</span>(<span class="string">&quot;%d %d&quot;</span>,&amp;x,&amp;y);</span><br><span class="line"></span><br><span class="line">​      <span class="keyword">if</span>(flag[i]) flag[i]=Union(x,y);</span><br><span class="line"></span><br><span class="line">​    &#125;</span><br><span class="line"></span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=c;i++)</span><br><span class="line"></span><br><span class="line">  &#123;</span><br><span class="line"></span><br><span class="line">​    <span class="built_in">printf</span>(<span class="string">&quot;testcase %d:&quot;</span>,i);</span><br><span class="line"></span><br><span class="line">​    <span class="keyword">if</span>(flag[i])</span><br><span class="line"></span><br><span class="line">​      <span class="built_in">printf</span>(<span class="string">&quot;没有发现同性恋\n&quot;</span>);</span><br><span class="line"></span><br><span class="line">​    <span class="keyword">else</span></span><br><span class="line"></span><br><span class="line">​      <span class="built_in">printf</span>(<span class="string">&quot;发现同性恋\n&quot;</span>);</span><br><span class="line"></span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
         </div>
         
@@ -420,7 +323,7 @@
     <script type="text/javascript">
         $(()=>{
             new QRCode("wechat-qr", {
-                text: "http://example.com/2021/11/04/test1/",
+                text: "http://example.com/2021/11/04/%E5%B9%B6%E6%9F%A5%E9%9B%86/",
                 width: 150,
                 height: 150,
                 correctLevel : QRCode.CorrectLevel.H
@@ -432,7 +335,7 @@
             const qzoneBase     = "https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?";
             const facebookBase  = "https://www.facebook.com/sharer/sharer.php?";
             const twitterBase   = "https://twitter.com/intent/tweet?";
-            const hostUrl       = "http://example.com/2021/11/04/test1/";
+            const hostUrl       = "http://example.com/2021/11/04/%E5%B9%B6%E6%9F%A5%E9%9B%86/";
             const title         = "「test1」";
             const excerpt       = `论文题目：并查集算法原理与实现
 1 引言
@@ -517,7 +420,7 @@
         
           
           
-            <a class="list-group-item" href="/2021/11/04/test1/"><i class="fa  fa-book"></i> test1</a>
+            <a class="list-group-item" href="/2021/11/04/%E5%B9%B6%E6%9F%A5%E9%9B%86/"><i class="fa  fa-book"></i> test1</a>
             
           
         
